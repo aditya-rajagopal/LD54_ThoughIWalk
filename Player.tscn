@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://idxyan3q5dh5"]
+[gd_scene load_steps=28 format=3 uid="uid://idxyan3q5dh5"]
 
 [ext_resource type="Script" path="res://BodyAndSoul.gd" id="1_ni6lb"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_r1t6e"]
@@ -20,7 +20,9 @@
 [ext_resource type="AudioStream" uid="uid://dynvbocgxolhm" path="res://Sound/Soul Out.ogg" id="17_g30kk"]
 [ext_resource type="AudioStream" uid="uid://dsgrd2apk6rus" path="res://Sound/Soul In.ogg" id="19_yqy3f"]
 [ext_resource type="Texture2D" uid="uid://bb6w2f0f1pyle" path="res://Sprites/Soul-Hover.png" id="20_0263p"]
+[ext_resource type="Texture2D" uid="uid://dhauj8y6ddwr0" path="res://Sprites/light.png" id="21_hpcj0"]
 [ext_resource type="Script" path="res://Arrow.gd" id="21_tbxxm"]
+[ext_resource type="Script" path="res://LightMovement.gd" id="22_iwx2c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fwv1p"]
 radius = 4.01
@@ -162,6 +164,16 @@ shape = SubResource("CircleShape2D_mr4e6")
 z_index = 2
 texture = ExtResource("20_0263p")
 hframes = 7
+
+[node name="PointLight2D" type="PointLight2D" parent="StateMachine/Soul"]
+color = Color(1, 1, 1, 0.780392)
+energy = 0.75
+texture = ExtResource("21_hpcj0")
+texture_scale = 0.05
+script = ExtResource("22_iwx2c")
+distortion = 2.0
+pulse_rate = 0.5
+pulse_amplitude = 0.075
 
 [node name="Arrow" type="Sprite2D" parent="StateMachine" node_paths=PackedStringArray("target")]
 z_index = 2

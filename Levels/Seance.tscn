@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1uydp6fdejnq"]
+[gd_scene load_steps=24 format=3 uid="uid://d1uydp6fdejnq"]
 
 [ext_resource type="Script" path="res://Scripts/Parallax.gd" id="1_r0u7h"]
 [ext_resource type="Texture2D" uid="uid://c72i2tpmow5pl" path="res://Sprites/Level Designs/Level 6 - Twist/Level 6 - Twist_background.png" id="2_p33d7"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://b0rp8q05ixdhq" path="res://Levels/Shift.tscn" id="10_mk3fe"]
 [ext_resource type="Texture2D" uid="uid://bb6w2f0f1pyle" path="res://Sprites/Soul-Hover.png" id="12_swu3e"]
 [ext_resource type="Script" path="res://Levels/SimpleAnimateSprite.gd" id="13_0eii2"]
+[ext_resource type="Texture2D" uid="uid://dhauj8y6ddwr0" path="res://Sprites/light.png" id="16_o7dh7"]
+[ext_resource type="Script" path="res://LightMovement.gd" id="17_3pydu"]
 
 [sub_resource type="Animation" id="Animation_funm5"]
 resource_name = "Cutscene"
@@ -121,6 +123,50 @@ tracks/7/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_80yvh"]
+resource_name = "Cutscene2"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Environment/Parallax Layers/Mid/Text2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Environment/Parallax Layers/Mid/Text3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vcc57"]
+resource_name = "Cutscene3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Environment/Parallax Layers/Mid/Text3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_2poy2"]
 length = 0.001
 tracks/0/type = "value"
@@ -204,50 +250,6 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_80yvh"]
-resource_name = "Cutscene2"
-length = 1.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Environment/Parallax Layers/Mid/Text2:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Environment/Parallax Layers/Mid/Text3:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8, 1.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_vcc57"]
-resource_name = "Cutscene3"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Environment/Parallax Layers/Mid/Text3:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t31tv"]
@@ -378,5 +380,15 @@ script = ExtResource("13_0eii2")
 sprite = NodePath("..")
 hFrames = 7
 texture = ExtResource("12_swu3e")
+
+[node name="PointLight2D" type="PointLight2D" parent="Level Soul"]
+color = Color(1, 1, 1, 0.780392)
+energy = 0.75
+texture = ExtResource("16_o7dh7")
+texture_scale = 0.05
+script = ExtResource("17_3pydu")
+distortion = 2.0
+pulse_rate = 0.5
+pulse_amplitude = 0.075
 
 [editable path="Player"]

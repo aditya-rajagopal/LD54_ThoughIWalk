@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfla4tmti84gt"]
+[gd_scene load_steps=6 format=3 uid="uid://dfla4tmti84gt"]
 
 [ext_resource type="Script" path="res://Levels/Chalice.gd" id="1_ljn3m"]
 [ext_resource type="Texture2D" uid="uid://c1qwngjla4j7p" path="res://Sprites/Chalice-Pulse.png" id="2_sria1"]
+[ext_resource type="Texture2D" uid="uid://dhauj8y6ddwr0" path="res://Sprites/light.png" id="3_neh23"]
+[ext_resource type="Script" path="res://LightMovement.gd" id="4_cfghf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2031"]
 radius = 4.0
@@ -18,3 +20,13 @@ shape = SubResource("CircleShape2D_j2031")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sria1")
 hframes = 11
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.5, -0.5)
+color = Color(1, 1, 0.596078, 0.854902)
+energy = 0.5
+texture = ExtResource("3_neh23")
+texture_scale = 0.1
+script = ExtResource("4_cfghf")
+distortion = 0.0
+pulse_amplitude = 0.05

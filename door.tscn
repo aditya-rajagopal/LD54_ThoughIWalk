@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cubtkptyfpv0n"]
+[gd_scene load_steps=6 format=3 uid="uid://cubtkptyfpv0n"]
 
 [ext_resource type="Script" path="res://Scripts/Door.gd" id="1_du0dn"]
 [ext_resource type="Texture2D" uid="uid://deyakr5m6odab" path="res://Sprites/Lantern/Lantern_layer 1.png" id="2_323xt"]
+[ext_resource type="Texture2D" uid="uid://dhauj8y6ddwr0" path="res://Sprites/light.png" id="3_wumem"]
+[ext_resource type="Script" path="res://LightMovement.gd" id="4_yikt2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur0sv"]
 size = Vector2(20, 42)
@@ -17,3 +19,13 @@ shape = SubResource("RectangleShape2D_ur0sv")
 z_index = -1
 position = Vector2(-14, -5)
 texture = ExtResource("2_323xt")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-15, -2)
+color = Color(0.745098, 0.752941, 0.627451, 0.815686)
+texture = ExtResource("3_wumem")
+texture_scale = 0.05
+script = ExtResource("4_yikt2")
+distortion = 2.0
+pulse_rate = 0.5
+pulse_amplitude = 0.05

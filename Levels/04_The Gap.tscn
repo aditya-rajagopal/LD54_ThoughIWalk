@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4yas8a0hg7og"]
+[gd_scene load_steps=17 format=3 uid="uid://4yas8a0hg7og"]
 
 [ext_resource type="Script" path="res://Scripts/Parallax.gd" id="1_w0seh"]
 [ext_resource type="Texture2D" uid="uid://v8uk7ytlvd4a" path="res://Sprites/Level Designs/Level 1/Level 1_background.png" id="2_r8512"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bb6w2f0f1pyle" path="res://Sprites/Soul-Hover.png" id="11_tga3j"]
 [ext_resource type="Script" path="res://Scripts/CameraPointCycle.gd" id="12_p13d8"]
 [ext_resource type="Script" path="res://Levels/SimpleAnimateSprite.gd" id="13_emudn"]
+[ext_resource type="Script" path="res://LightMovement.gd" id="14_6xwxy"]
+[ext_resource type="Texture2D" uid="uid://dhauj8y6ddwr0" path="res://Sprites/light.png" id="14_fsyx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1i5w"]
 size = Vector2(231, 45)
@@ -110,5 +112,15 @@ script = ExtResource("13_emudn")
 sprite = NodePath("..")
 hFrames = 7
 texture = ExtResource("11_tga3j")
+
+[node name="PointLight2D" type="PointLight2D" parent="Level Soul"]
+color = Color(1, 1, 1, 0.780392)
+energy = 0.75
+texture = ExtResource("14_fsyx5")
+texture_scale = 0.05
+script = ExtResource("14_6xwxy")
+distortion = 2.0
+pulse_rate = 0.5
+pulse_amplitude = 0.075
 
 [editable path="Player"]
