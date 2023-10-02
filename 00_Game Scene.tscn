@@ -205,8 +205,18 @@ stream = ExtResource("15_1foit")
 volume_db = -8.0
 autoplay = true
 
+[node name="CRTShaderOverlay" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="CRTShaderTexture" type="ColorRect" parent="CRTShaderOverlay"]
+material = SubResource("ShaderMaterial_mmo3y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="." node_paths=PackedStringArray("label", "texture")]
-visible = false
 script = ExtResource("18_6o0rw")
 label = NodePath("Label")
 texture = NodePath("TextureRect")
@@ -227,14 +237,3 @@ offset_right = 29.0
 offset_bottom = 31.0
 texture = ExtResource("19_408k2")
 stretch_mode = 2
-
-[node name="CRTShaderOverlay" type="CanvasLayer" parent="."]
-layer = 128
-
-[node name="CRTShaderTexture" type="ColorRect" parent="CRTShaderOverlay"]
-material = SubResource("ShaderMaterial_mmo3y")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
