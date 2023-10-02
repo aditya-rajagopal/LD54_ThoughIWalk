@@ -170,7 +170,7 @@ shader = ExtResource("21_4lpdi")
 shader_parameter/scan_line_multiplier = 4.0
 shader_parameter/scan_line_impact = 0.8
 shader_parameter/_VignetteWidth = 40.0
-shader_parameter/_Curvature = 10.0
+shader_parameter/_Curvature = 7.0
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("sceneFader", "container", "sfxPlayer")]
 position = Vector2(-1, -1)
@@ -206,7 +206,7 @@ volume_db = -8.0
 autoplay = true
 
 [node name="CRTShaderOverlay" type="CanvasLayer" parent="."]
-layer = 0
+layer = 2
 
 [node name="CRTShaderTexture" type="ColorRect" parent="CRTShaderOverlay"]
 material = SubResource("ShaderMaterial_mmo3y")
@@ -217,6 +217,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." node_paths=PackedStringArray("label", "texture")]
+layer = 3
 script = ExtResource("18_6o0rw")
 label = NodePath("Label")
 texture = NodePath("TextureRect")
