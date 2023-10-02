@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bk4ptr42f61f1"]
+[gd_scene load_steps=28 format=3 uid="uid://bk4ptr42f61f1"]
 
 [ext_resource type="Script" path="res://Scripts/00_GameManager.gd" id="1_1ig5f"]
 [ext_resource type="PackedScene" uid="uid://fb1qsne6gp0h" path="res://Levels/03_Blue.tscn" id="2_3stm7"]
@@ -19,6 +19,7 @@
 [ext_resource type="FontFile" uid="uid://clmbimsfesb3e" path="res://Levels/TinyFont2.ttf" id="17_lffea"]
 [ext_resource type="Script" path="res://ChaliceCounter.gd" id="18_6o0rw"]
 [ext_resource type="Texture2D" uid="uid://cvhti820p1ppl" path="res://Sprites/Chalice-Chalice.png" id="19_408k2"]
+[ext_resource type="Shader" path="res://CRTShader.gdshader" id="21_4lpdi"]
 
 [sub_resource type="Animation" id="Animation_o6n0n"]
 resource_name = "DownEnd"
@@ -164,6 +165,13 @@ _data = {
 "RESET": SubResource("Animation_0yc7w")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mmo3y"]
+shader = ExtResource("21_4lpdi")
+shader_parameter/scan_line_multiplier = 4.0
+shader_parameter/scan_line_impact = 0.8
+shader_parameter/_VignetteWidth = 40.0
+shader_parameter/_Curvature = 10.0
+
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("sceneFader", "container", "sfxPlayer")]
 position = Vector2(-1, -1)
 script = ExtResource("1_1ig5f")
@@ -198,6 +206,7 @@ volume_db = -8.0
 autoplay = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." node_paths=PackedStringArray("label", "texture")]
+visible = false
 script = ExtResource("18_6o0rw")
 label = NodePath("Label")
 texture = NodePath("TextureRect")
@@ -218,3 +227,14 @@ offset_right = 29.0
 offset_bottom = 31.0
 texture = ExtResource("19_408k2")
 stretch_mode = 2
+
+[node name="CRTShaderOverlay" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="CRTShaderTexture" type="ColorRect" parent="CRTShaderOverlay"]
+material = SubResource("ShaderMaterial_mmo3y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
