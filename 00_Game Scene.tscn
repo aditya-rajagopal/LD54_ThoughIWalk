@@ -214,7 +214,7 @@ volume_db = -8.0
 autoplay = true
 
 [node name="CRTShaderOverlay" type="CanvasLayer" parent="."]
-layer = 3
+layer = 20
 
 [node name="CRTShaderTexture" type="ColorRect" parent="CRTShaderOverlay"]
 material = SubResource("ShaderMaterial_mmo3y")
@@ -248,7 +248,7 @@ texture = ExtResource("19_408k2")
 stretch_mode = 2
 
 [node name="ScanLine" type="CanvasLayer" parent="."]
-layer = 2
+layer = 19
 
 [node name="ScanLineTexture" type="ColorRect" parent="ScanLine"]
 material = SubResource("ShaderMaterial_0u1o0")
