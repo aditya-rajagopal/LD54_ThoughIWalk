@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bk4ptr42f61f1"]
+[gd_scene load_steps=31 format=3 uid="uid://bk4ptr42f61f1"]
 
 [ext_resource type="Script" path="res://Scripts/00_GameManager.gd" id="1_1ig5f"]
 [ext_resource type="PackedScene" uid="uid://fb1qsne6gp0h" path="res://Levels/03_Blue.tscn" id="2_3stm7"]
@@ -18,15 +18,17 @@
 [ext_resource type="AudioStream" uid="uid://bjpt237i5rhe7" path="res://Sound/twinkle.ogg" id="15_d00yp"]
 [ext_resource type="FontFile" uid="uid://clmbimsfesb3e" path="res://Levels/TinyFont2.ttf" id="17_lffea"]
 [ext_resource type="Script" path="res://ChaliceCounter.gd" id="18_6o0rw"]
+[ext_resource type="Script" path="res://CRTScanline.gd" id="18_ukepc"]
 [ext_resource type="Texture2D" uid="uid://cvhti820p1ppl" path="res://Sprites/Chalice-Chalice.png" id="19_408k2"]
 [ext_resource type="Shader" path="res://CRTShader.gdshader" id="21_4lpdi"]
+[ext_resource type="Shader" path="res://ScanLine.gdshader" id="22_j7w5f"]
 
 [sub_resource type="Animation" id="Animation_o6n0n"]
 resource_name = "DownEnd"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Wiper:position")
+tracks/0/path = NodePath("SceneChange/Wiper:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,7 +40,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Wiper:texture")
+tracks/1/path = NodePath("SceneChange/Wiper:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -53,7 +55,7 @@ resource_name = "DownStart"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Wiper:position")
+tracks/0/path = NodePath("SceneChange/Wiper:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -65,7 +67,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Wiper:texture")
+tracks/1/path = NodePath("SceneChange/Wiper:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -80,7 +82,7 @@ resource_name = "ForwardEnd"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Wiper:position")
+tracks/0/path = NodePath("SceneChange/Wiper:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -92,7 +94,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Wiper:texture")
+tracks/1/path = NodePath("SceneChange/Wiper:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -107,7 +109,7 @@ resource_name = "ForwardStart"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Wiper:position")
+tracks/0/path = NodePath("SceneChange/Wiper:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -119,7 +121,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Wiper:texture")
+tracks/1/path = NodePath("SceneChange/Wiper:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -134,7 +136,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Wiper:position")
+tracks/0/path = NodePath("SceneChange/Wiper:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +148,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Wiper:texture")
+tracks/1/path = NodePath("SceneChange/Wiper:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -171,6 +173,11 @@ shader_parameter/scan_line_multiplier = 4.0
 shader_parameter/scan_line_impact = 0.8
 shader_parameter/_VignetteWidth = 40.0
 shader_parameter/_Curvature = 7.0
+shader_parameter/_delay = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0u1o0"]
+shader = ExtResource("22_j7w5f")
+shader_parameter/_delay = 5.0
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("sceneFader", "container", "sfxPlayer")]
 position = Vector2(-1, -1)
@@ -182,9 +189,9 @@ sfxPlayer = NodePath("SFX player")
 
 [node name="Container" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="SceneChange" type="CanvasLayer" parent="."]
 
-[node name="Wiper" type="TextureRect" parent="CanvasLayer"]
+[node name="Wiper" type="TextureRect" parent="SceneChange"]
 offset_left = 180.0
 offset_top = -90.0
 offset_right = 500.0
@@ -216,13 +223,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="." node_paths=PackedStringArray("label", "texture")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("label", "texture")]
 layer = 3
 script = ExtResource("18_6o0rw")
 label = NodePath("Label")
 texture = NodePath("TextureRect")
 
-[node name="Label" type="Label" parent="CanvasLayer2"]
+[node name="Label" type="Label" parent="UI"]
 offset_left = 12.0
 offset_top = 3.0
 offset_right = 85.0
@@ -231,10 +238,23 @@ theme_override_fonts/font = ExtResource("17_lffea")
 theme_override_font_sizes/font_size = 6
 text = "chalices collected"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+[node name="TextureRect" type="TextureRect" parent="UI"]
 offset_left = -11.0
 offset_top = -9.0
 offset_right = 29.0
 offset_bottom = 31.0
 texture = ExtResource("19_408k2")
 stretch_mode = 2
+
+[node name="ScanLine" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ScanLineTexture" type="ColorRect" parent="ScanLine"]
+material = SubResource("ShaderMaterial_0u1o0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_ukepc")
+max_delay = 4.0

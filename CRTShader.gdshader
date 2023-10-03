@@ -7,6 +7,8 @@ uniform float _VignetteWidth = 20;
 
 uniform float _Curvature;
 
+uniform float _delay = 5.0f;
+
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 
 vec2 warp_edges(vec2 uv)
@@ -36,6 +38,8 @@ void fragment() {
 	colour.g *= pow((sin(SCREEN_UV.y * screen_size.y * scan_line_multiplier) + 1.0f) * 0.15f + 1.0f, scan_line_impact);
     colour.rb *= pow((cos(SCREEN_UV.y * screen_size.y * scan_line_multiplier) + 1.0f) * 0.135f + 1.0f, scan_line_impact);
 	colour.rgb = clamp(colour, 0.0f, 1.0f).rgb * vignette.x * vignette.y;
+	
+	
 	
 	COLOR = colour;
 }
